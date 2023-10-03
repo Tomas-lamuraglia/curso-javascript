@@ -18,42 +18,43 @@
 // // ]
 
 
-const productos = [
-    {"mouse": 400, "teclado": 200, "monitor": 150}
-  ]
+// const productos = [
+//     {"mouse": 400, "teclado": 200, "monitor": 150}
+//   ]
   
-  let nombre = prompt("Ingrese su nombre")
-  alert(`Bienvenido ${nombre}!`)
+//   let nombre = prompt("Ingrese su nombre")
+//   alert(`Bienvenido ${nombre}!`)
   
-  function cargarproducto() {
-    let nombreproducto = prompt("Ingrese el nombre del producto a agregar")
-    let cantidad = parseInt(prompt("Ingrese la cantidad del producto a agregar"))
+//   function cargarproducto() {
+//     let nombreproducto = prompt("Ingrese el nombre del producto a agregar")
+//     let cantidad = parseInt(prompt("Ingrese la cantidad del producto a agregar"))
   
-    let productoExistente = productos[0][nombreproducto]
-    if (productoExistente) {
-      productos[0][nombreproducto] += cantidad
-      alert("El producto ya existe. Se ha actualizado la cantidad.")
-    } else {
-      productos[0][nombreproducto] = cantidad
-      alert("El producto se agregó correctamente.")
-    }
-  }
+//     let productoExistente = productos[0][nombreproducto]
+//     if (productoExistente) {
+//       productos[0][nombreproducto] += cantidad
+//       alert("El producto ya existe. Se ha actualizado la cantidad.")
+//     } else {
+//       productos[0][nombreproducto] = cantidad
+//       alert("El producto se agregó correctamente.")
+//     }
+//   }
   
-  let carga = true
-  while (carga) {
-    cargarproducto();
-    carga = confirm("¿Quieres agregar otro producto?")
-    if (!carga) {
-      mostrarproductos()
-    }
-  }
+//   let carga = true
+//   while (carga) {
+//     cargarproducto();
+//     carga = confirm("¿Quieres agregar otro producto?")
+//     if (!carga) {
+//       mostrarproductos()
+//     }
+//   }
   
-  function mostrarproductos() {
-    let productosamostrar = "";
-    for (let producto in productos[0]) {
-      productosamostrar += `${producto}: ${productos[0][producto]} / `
-    }
-    alert(`Los productos a mostrar son: ${productosamostrar}`)
-    console.log(`stock actualizado: ${productosamostrar}`)
-  }
+//   function mostrarproductos() {
+//     let productosamostrar = "";
+//     for (let producto in productos[0]) {
+//       productosamostrar += `${producto}: ${productos[0][producto]} / `
+//     }
+//     alert(`Los productos a mostrar son: ${productosamostrar}`)
+//     console.log(`stock actualizado: ${productosamostrar}`)
+//   }
   
+

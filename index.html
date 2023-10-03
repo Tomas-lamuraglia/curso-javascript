@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cursojavascript-Lamuraglia</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <h1>Menu Tienda</h1>
+    <button id="darkMode">Dark Mode</button>
+
+    <button id="mostrarMenu">Mostrar menu</button>
+
+    <div id="menu agregar" class="oculto">
+        <form id="formularioProductos">
+            <input id="marca" type="text" autocomplete="off" placeholder="Marca" required />
+            <input id="producto" type="text" autocomplete="off" placeholder="Producto" required/>
+            <input id="precio" type="number" autocomplete="off" placeholder="Precio" />
+            <input id="btn" type="submit" value="Agregar producto" />
+        </form>
+       
+    </div>
+
+    <div id="listadoProductos"></div>
     
-    <script src="./js/cursojavascript.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

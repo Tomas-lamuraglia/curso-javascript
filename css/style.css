@@ -1,0 +1,22 @@
+.oculto{
+    display: none;
+}
+
+#mostrarMenu{
+    margin-bottom: 1em;
+}
+
+#btn{
+    margin-top: 1em;
+}
+
+.Card {
+    background-color: rgb(36, 8, 247);
+    margin: 1vh;
+    width: 18rem;
+}
+
+.darkMode {
+    background-color: black;
+    color: white;
+}
