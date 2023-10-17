@@ -1,0 +1,75 @@
+
+[
+    {"producto": "monitor",
+     "precio": 50000, 
+     "Marca": "Samsung", 
+     "stock": 20,
+     "imagen": "../img/monitor-Samsung.jpg"
+    },
+    {"producto": "monitor", 
+     "precio": 65500, 
+     "Marca": "Lg", 
+     "stock": 10,
+     "imagen": "../img/monitor-LG.jpg"
+    },
+    {"producto": "monitor", 
+     "precio": 105500, 
+     "Marca": "Asus", 
+     "stock": 5,
+     "imagen": "../img/monitor-Asus.jpg"
+    },
+    {"producto": "monitor", 
+     "precio": 85500, 
+     "Marca": "Philips", 
+     "stock": 25,
+     "imagen": "../img/monitor-Philips.jpg"
+    },
+    {"producto":"mouse", 
+     "precio": 1100, 
+     "Marca": "Logitech",
+     "stock": 25,
+     "imagen": "../img/mouse-Logitech.jpg"
+    },
+    {"producto":"mouse", 
+    "precio": 1400, 
+    "Marca": "Genius",
+    "stock": 25,
+    "imagen": "../img/mouse-Genius.jpg"
+    },
+    {"producto":"mouse", 
+    "precio": 1700, 
+    "Marca": "Noga",
+    "stock": 25,
+    "imagen": "../img/mouse-Noga.jpg"
+    },
+    {"producto":"mouse", 
+    "precio": 5500, 
+    "Marca": "Razer",
+    "stock": 25,
+    "imagen": "../img/mouse-Razer.jpg"
+    },
+    {"producto":"teclado", 
+    "precio": 1100, 
+    "Marca": "Logitech", 
+    "stock": 25,
+    "imagen": "../img/teclado-Logitech.jpg"
+    },
+    {"producto":"teclado", 
+    "precio": 1400, 
+    "Marca": "Genius"
+    , "stock": 25,
+    "imagen": "../img/teclado-Genius.jpg"
+    },
+    {"producto":"teclado", 
+    "precio": 1700, 
+    "Marca": "Noga", 
+    "stock": 25,
+    "imagen": "../img/teclado-Noga.jpg"
+    },
+    {"producto":"teclado",
+    "precio": 5500, 
+    "Marca": "Razer", 
+    "stock": 25,
+    "imagen": "../img/teclado-Razer.jpg"
+    }
+]
