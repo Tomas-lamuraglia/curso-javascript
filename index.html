@@ -7,23 +7,20 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1>Menu Tienda</h1>
-    <button id="darkMode">Dark Mode</button>
+    <div class="galeria">
+        <h1>Menu Tienda</h1>
+        <div id="contenedor"></div>
+        <div id="carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="lista-carrito"></ul>
+        <p>Total: <span id="total">$0.00</span></p>
+        <button id="vaciar-carrito">Vaciar Carrito</button>
+        <button id="confirmar-compra">Confirmar Compra</button>
+        </div>
+    </div> 
 
-    <button id="mostrarMenu">Mostrar menu</button>
-
-    <div id="menu agregar" class="oculto">
-        <form id="formularioProductos">
-            <input id="marca" type="text" autocomplete="off" placeholder="Marca" required />
-            <input id="producto" type="text" autocomplete="off" placeholder="Producto" required/>
-            <input id="precio" type="number" autocomplete="off" placeholder="Precio" />
-            <input id="btn" type="submit" value="Agregar producto" />
-        </form>
-       
-    </div>
-
-    <div id="listadoProductos"></div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/index.js"></script>
+    
 </body>
 </html>

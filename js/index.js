@@ -1,149 +1,133 @@
-// class Producto{
-//     constructor(marca, producto, precio){
-//     this.marca = marca
-//     this.producto = producto
-//     this.precio = precio
-    
-//     }
-//     mostrardatos(){
-//         return `Producto ${this.marca}`
-//     }
-// }
+class Producto{
+    constructor(marca, producto, precio){
+    this.marca = marca
+    this.producto = producto
+    this.precio = precio
+    this.cantidad = cantidad;
+    this.precioTotal = producto.precio; 
+    }
+    agregarUnidad() {
+      this.cantidad++;
+  }
 
-// const listadoProductos= [];
+  quitarUnidad() {
+      this.cantidad--;
+  }
 
-// function guardarProducto(e) {
-//     e.preventDefault();
-//     // console.log(e)
+  actualizarPrecioTotal() {
+      this.precioTotal = this.precio * this.cantidad;
+  }
+}
 
-//     const marca = document.querySelector("#marca").value;
-//     const producto = document.querySelector("#producto").value;
-//     const precio = document.querySelector("#precio").value;
+let carrito = [];
+let montoTotal = 0;
 
-   
-//     listadoProductos.push(new Producto(marca, producto, precio));
+const DOMitems = document.querySelector('#items');
+const DOMcarrito = document.querySelector('#carrito');
+const DOMtotal = document.querySelector('#total');
+const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+//confirmar compra
+const DOMConfirmarCompra = document.getElementById('#confirmar-compra');
+const miLocalStorage = window.localStorage;
 
-//     localStorage.setItem("Producto", JSON.stringify(listadoProductos));
-//     mostrarListado(listadoProductos);
+// // Función para vaciar el carrito
+function vaciarCarrito() {
+  const cartElement = document.getElementById("lista-carrito");
+  cartElement.innerHTML = ""; // Elimina todos los elementos del carrito
+}
 
-//     document.getElementById("formularioProductos").reset();
-// }
+// Agrega un controlador de eventos al botón "Vaciar Carrito"
+document.getElementById("vaciar-carrito").addEventListener("click", () => {
+  vaciarCarrito();
 
-// //  Funcion asociada a evento para cambiar tema a darkMode
-
-// function cambiarTema() {
-//     document.body.classList.toggle("darkMode")
-
-//     if (document.body.classList == "darkMode"){
-//         localStorage.setItem("darkMode", true)
-//     }else {
-//         localStorage.setItem("darkMode", false)
-//     }
-// }
-
-// function chequearDarkMode(){
-//     const darkMode = localStorage.getItem("darkMode")
-//     console.log(darkMode)
-
-//     if(darkMode == "true"){
-//         document.body.classList = "darkMode"
-//     }
-// }
-
-
-// //  Funcion asociada a evento para mostrar menu productos
-
-// function mostrarFormulario() {
-//     let menuOculto = document.getElementById("menu agregar");
-//     menuOculto.classList.toggle("oculto");
-// }
-// function mostrarEnFavoritos(Producto) {
-//     // Simulación
-//     console.log(`Se agregó ${Producto.marca} al listado de Favoritos`);
-// }
-
-// function mostrarListado(listadoProductos) {
-//     // Obtiene el id del contenedor del listado de productos
-//     const listado = document.getElementById("listadoProductos");
-//     listado.textContent = "";
-
-    
-//     for(const Producto of listadoProductos) {
-//         const div = document.createElement("div");
-//         div.innerHTML = `
-// 			<div class="Card">
-// 				<h3>${Producto.marca}</h3>
-// 				<p>${Producto.producto}<p>
-// 				<p>${Producto.precio}<p>
-// 				<button id="${Producto.marca}" type="button">Guardar en Favoritos</button>
-// 			</div>
-// 		`;
-
-//         listado.appendChild(div);
-//         let boton = document.getElementById(`${Producto.marca}`);
-//         boton.onclick= () => mostrarEnFavoritos(Producto);
-//     }
-// }
-// //  Funcion para ver los productos cargados en el Storage
-// function verificarProductosenStorage() {
-//     if (JSON.parse(localStorage.getItem(`Producto`))) {
-//       let listadoProductos = JSON.parse(localStorage.getItem(`Producto`));
-//       mostrarListado(listadoProductos);
-//     }
-//   }
-  
-// //  Evento para guardar formulario productos
-// let formulario = document.getElementById("formularioProductos");
-// formulario.addEventListener("submit", guardarProducto);
-
-// //  Evento para mostrar menu productos
-// let mostrarMenu = document.getElementById("mostrarMenu");
-// mostrarMenu.addEventListener("click", mostrarFormulario);
-
-// //  Evento para dark mode.
-// let botonDarkMode = document.getElementById("darkMode");
-// botonDarkMode.addEventListener("click",  cambiarTema);
-
-// // Ejecucion de programas
-// chequearDarkMode()
-// verificarProductosenStorage();
+// Actualizar el monto total a 0.00
+const montoTotalElement = document.getElementById("total");
+montoTotalElement.textContent = "$0.00";    
+});
 
 const URL = "./productos.json"
-const contenedorproductos = document.getElementById("listadoProductos")
+const contenedorProductos=document.getElementById("contenedor")
+const agregarAlCarrito = (prod, id) => {
+  // Implementa la lógica para agregar productos al carrito
+  console.log(`Agregado al carrito: ${prod.producto}, ${prod.marca}`);
+
+  // Obtener el elemento del carrito en el DOM
+  const cartElement = document.getElementById("lista-carrito");
+
+  // Crear un nuevo elemento de lista (por ejemplo, un <li>) para el producto
+  const newItem = document.createElement("li");
+  newItem.textContent = `${prod.producto}, ${prod.marca}`
+
+  // Agregar el elemento de producto al carrito en el DOM
+  cartElement.appendChild(newItem);
+
+   // Actualizar el monto total
+   montoTotal += prod.precio;
+   actualizarMontoTotal();
+
+   function actualizarMontoTotal() {
+      const totalElement = document.getElementById("total"); // Donde "total" es el ID del elemento donde deseas mostrar el monto total
+      totalElement.textContent = `$${montoTotal.toFixed(2)}`;
+  }
+};
 
 const pedirproductos = async () => {
     const resp = await fetch (URL)
     const data = await resp.json()
     console.log(data)
 
-    funtion = data.foreach((prod) =>{
-        const div = document.createElement("div")
-        div.innerHTML =`
-        // 			<div class="Card">
-        // 				<h3>${prod.marca}</h3>
-        // 				<p>${prod.producto}<p>
-        // 				<p>${prod.precio}<p>
-        // 				<button id="${prod.marca}" type="button">Guardar en Favoritos</button>
-        // 			</div>
-        // 		`
-        // `
-    //     <div class="card">
-    //     <div class="card-img"></div>
-    //     <div class="card-info">
-    //       <p class="text-title">titulo: ${prod.producto} </p>
-    //       <p class="text-body">marca: ${prod.marca}</p>
-    //     </div>
-    //     <div class="card-footer">
-    //     <span class="text-title">precio: ${prod.precio}</span>
-    //     <div class="card-button">
-    //       <svg class="svg-icon" viewBox="0 0 20 20">
-    //         <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-    //         <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-    //         <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-    //       </svg>
-    //     </div>
-    //   </div></div>`
-      contenedorproductos.appendChild(div)
-    })
+  data.forEach((prod) => {
+      const div = document.createElement("div")
+       div.innerHTML =`<div class="card">
+      <div class="image-container">
+      <img class="img" src="${prod.imagen}">
+      </div>
+      <div class="content">
+        <div class="Marca">${prod.marca}</div>
+        <div class="producto">${prod.producto}</div> 
+        <div class="precio"> ${prod.precio}</div>
+      </div>
+
+      <button class="button" id="${prod.producto},${prod.marca}" >
+      Comprar
+      </button>
+      </div>
+      </div>`
+    
+      contenedorProductos.appendChild(div)
+      const btnAgregar = document.getElementById(`${prod.producto},${prod.marca}`)
+      btnAgregar.addEventListener("click", () => {
+          agregarAlCarrito(prod, prod.id);
+      })
+  })
 }
+
 pedirproductos()
+
+//sweetalert de boton confirmar
+const btn = document.querySelector('#confirmar-compra')
+btn.addEventListener('click', () => {
+    Swal.fire({
+        title: '¿Confirmar compra?',
+        text: '¿Estás seguro de que deseas confirmar la compra de este carrito?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, confirmar compra',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Aquí puedes agregar la lógica para confirmar la compra
+            Swal.fire('Compra confirmada', '', 'success');
+        } else {
+            Swal.fire('Compra cancelada', '', 'error');
+        }
+    });
+});
+//sweetalert de boton vaciar carrito
+const btn1 = document.querySelector('#vaciar-carrito')
+btn1.addEventListener('click', () => {
+Swal.fire(
+    '¿Desea Vaciar el carrito?',
+    'Presione OK para continuar',
+    'question'
+  )})
